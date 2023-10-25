@@ -96,7 +96,12 @@ export default defineComponent({
     const updateSendMessageState = () => {
       emit("update");
     };
-
+    if (props.type === "edit") {
+      const email = emailsStore.getCurrentEmail(props.emailId);
+      stateTo.value = email.to;
+      stateSubject.value = email.subject;
+      stateBody.value = email.body;
+    }
     return {
       stateTo,
       stateSubject,
